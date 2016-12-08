@@ -10,12 +10,6 @@
             "name": "啟動程式",
             "program": "${workspaceRoot}/index.js",
             "cwd": "${workspaceRoot}"
-        },
-        {
-            "type": "node",
-            "request": "attach",
-            "name": "附加至處理序",
-            "port": 5858
         }
     ]
 }
