@@ -16,7 +16,6 @@ function Component(name) {
 
     function readyStateChanged(){
         if(me.info!=null&&me.script!=null&&me.html!=null){
-            console.log(waitForReady);
             waitForReady.map(callback=>callback(me));
             waitForReady = [];
         }

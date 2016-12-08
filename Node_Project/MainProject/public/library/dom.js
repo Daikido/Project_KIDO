@@ -1,0 +1,1 @@
+function CreateDom(a,b,c,d){a=document.createElement(a);if(b instanceof Object)for(var e in b)a[e]=b[e];c instanceof Node&&c.appendChild(a);d instanceof Function&&d(a);return a};
