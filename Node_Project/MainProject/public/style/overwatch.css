@@ -2,6 +2,7 @@
 body{
     margin: 0;
    cursor:url();
+   min-width: 1687px;
 }
 *{
     font-family: cursive;
@@ -103,7 +104,7 @@ li.dropdown {
 }
 #toolist{
 float:left;
-width:6%;
+width:3%;
 background: #333333;
 height:1000px;
 }
@@ -111,9 +112,12 @@ height:1000px;
     display: inline-block;
     word-break: break-all;
 }
+table,tr{
+    min-width: 43px;
+}
 #content{
 float:left;
-width:94%;
+width:97%;
 height:1000px;
 background:#333333;
 }
