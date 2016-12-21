@@ -15,10 +15,10 @@ function Component(folder, onready) {
     this.setting = null;
     var me = this;
     function readyStateChanged() {
-        if (this.info != null &&
-            this.script != null &&
-            this.html != null &&
-            this.setting != null) onready();
+        if (me.info != null &&
+            me.script != null &&
+            me.html != null &&
+            me.setting != null) onready();
     }
 
     request(folder + "/info.json", function (info) {
