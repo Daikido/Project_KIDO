@@ -6,7 +6,8 @@
 ]);
 
 (function (a) { a.map(function (a) { var b = document.createElement("link"); b.rel = "stylesheet"; b.href = a; document.body.appendChild(b) }) })([
-    "style/main.css",
+    "https://fonts.googleapis.com/icon?family=Material+Icons",
+    "style/overwatch.css",
     "library/drag.css",
     "library/component.css"
 ]);
