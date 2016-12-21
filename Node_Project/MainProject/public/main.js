@@ -1,4 +1,4 @@
-new Component("header").onload(function (component) {
+/*new Component("header").onload(function (component) {
     document.body.appendChild(component.editable());
 });
 
@@ -39,4 +39,4 @@ Drag.end(c, function (data) {
     c.style.backgroundColor="lightGreen";
 }, function (data) {
     c.style.backgroundColor="";
-});
+});*/
