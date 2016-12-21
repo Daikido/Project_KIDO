@@ -11,3 +11,12 @@
     "library/drag.css",
     "library/component.css"
 ]);
+
+function request(path, callback) {
+    var req = new XMLHttpRequest();
+    req.open("get", path);
+    req.onload = function () {
+        callback(this.responseText);
+    }
+    req.send();
+}

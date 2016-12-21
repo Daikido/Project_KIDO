@@ -1,12 +1,3 @@
-function request(path, callback) {
-    var req = new XMLHttpRequest();
-    req.open("get", path);
-    req.onload = function () {
-        callback(this.responseText);
-    }
-    req.send();
-}
-
 function Component(folder, onready) {
     this.folder = folder;
     this.info = null;
