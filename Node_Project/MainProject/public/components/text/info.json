@@ -1,12 +1,4 @@
 {
     "name": "內文",
-    "description": "顯示內文",
-    "attribute":[
-        {
-            "id": "text",
-            "name": "內文文字",
-            "type": "text",
-            "description": "要顯示在內文的文字"
-        }
-    ]
+    "description": "顯示內文"
 }

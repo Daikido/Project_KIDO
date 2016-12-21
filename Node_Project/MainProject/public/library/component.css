@@ -1,8 +1,0 @@
-.component.editable{
-    border-left: solid 2px red;
-    padding-left: 16px;
-}
-
-.component.editable .content>button{
-    text-align: right;
-}

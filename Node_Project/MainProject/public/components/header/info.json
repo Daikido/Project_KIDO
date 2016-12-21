@@ -1,12 +1,4 @@
 {
     "name": "標題",
-    "description": "顯示標題",
-    "attribute":[
-        {
-            "id": "text",
-            "name": "標題文字",
-            "type": "text",
-            "description": "要顯示在標題的文字"
-        }
-    ]
+    "description": "顯示標題"
 }
