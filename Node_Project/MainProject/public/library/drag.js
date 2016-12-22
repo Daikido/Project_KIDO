@@ -32,9 +32,13 @@ function DragHandler() {
             //floating_text.textContent = me.dragging.info;
             me.onsuccess = onsuccess;
             me.onfailed = onfailed;
+
+            floating.className = "floating show";
+            floating.style.left = event.clientX + "px";
+            floating.style.top = event.clientY + "px";
         });
     }
-    
+
     this.end = function (element, ondrop, onin, onout) {
         element.addEventListener("mouseup", function (event) {
             if (me.dragging) {

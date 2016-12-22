@@ -11,6 +11,7 @@
     "https://fonts.googleapis.com/icon?family=Material+Icons",
     "style/overwatch.css",
     "library/drag.css",
+    "library/layoutbar.css",
     "library/component.css"
 ]);
 

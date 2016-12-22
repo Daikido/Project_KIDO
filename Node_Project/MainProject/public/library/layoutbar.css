@@ -1,0 +1,26 @@
+.layoutbar{
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background-color: green;
+    opacity: 0.5;
+    z-index: 99;
+}
+.layoutbar.top{
+    top: 0px;
+    width: 100%;
+}
+.layoutbar.bottom{
+    bottom: 0px;
+    width: 100%;
+}
+.layoutbar.left{
+    top: 0px;
+    left: 0px;
+    height: 100%;
+}
+.layoutbar.right{
+    top: 0px;
+    right: 0px;
+    height: 100%;
+}

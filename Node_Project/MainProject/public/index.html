@@ -1,85 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
     <link rel="stylesheet" href="style/overwatch.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" >
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
     <link rel="stylesheet" href="https://jqueryui.com//resources/demos/style.css">
     <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
     <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 </head>
+
 <body>
     <script src="javascript/import.js"></script>
     <div id="otter"></div>
 
-<div id="selection">
-<ul>
-    <li><a href="">tutorABC</a></li>
-    <li><a href="">Voicetube</a></li>
-    <li class="dropdown">
-        <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
-        <div class="dropdown-content">
-            <a href="#">Link 1</a>
-            <a href="#">Link 2</a>
-            <a href="#">Link 3</a>
-        </div>
-    </li>
-    
-</ul>
-</div>
-<div style="clear:both"></div>
+    <div id="selection">
+        <ul>
+            <li><a href="">tutorABC</a></li>
+            <li><a href="">Voicetube</a></li>
+            <li class="dropdown">
+                <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+                <div class="dropdown-content">
+                    <a href="#">Link 1</a>
+                    <a href="#">Link 2</a>
+                    <a href="#">Link 3</a>
+                </div>
+            </li>
 
-<div id="toolist">
-    
-    <div id="tooler">
-<table>
-    <span>Basic Tooler</span>
-
-  <tr>
-    <td><i  style="font-size:14px;color:#B9B9B9">attach</i><span>fsaf</span></td>
-  </tr>
-  <tr>
-    <td><i  style="font-size:14px;color:#B9B9B9">attach</i><span>fsaf</span></td>
-  </tr>
-  <tr>
-    <td><i class="material-icons" style="font-size:45px;color:#B9B9B9">attach_file</i></td>
-  </tr>
-</table>
+        </ul>
     </div>
-</div>
+    <div style="clear:both"></div>
 
-<div id="content">
+    <div id="toolist">
+
+        <div id="tooler">
+            <table>
+                <span>Basic Tooler</span>
+
+                <tr>
+                    <td><i style="font-size:14px;color:#B9B9B9">attach</i><span>fsaf</span></td>
+                </tr>
+                <tr>
+                    <td><i style="font-size:14px;color:#B9B9B9">attach</i><span>fsaf</span></td>
+                </tr>
+                <tr>
+                    <td><i class="material-icons" style="font-size:45px;color:#B9B9B9">attach_file</i></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="content">
+        <br>
 
         <div id="odd">
             <div class="row">
-                <div class="line">
-                <div id="dleft"></div><div id="dright"></div>  
-                </div>
-                <div class="line">
-                <div id="dleft"></div><div id="dright"></div>
-                </div>
-                <div id="dtop"></div><div id="dbot"></div>
+                <div class="line"></div>
+                <div class="line"></div>
             </div>
-            
-            <div class="row">
-                <div id="dleft"></div><div id="dright"></div> <div id="dtop"></div><div id="dbot"></div>
-            </div>    
-        </div>
 
-<div id="draggable" class="ui-widget-content">
-  <p>Drag me around</p>
-</div>
-</div>
-<div id="popup">
-    <div id="phead" onclick="popup()">
-        <div id="aa">TEST</div>
-        <div id="a">✕</div>
-        <div style="clear:both"></div>
+            <div class="row">
+                <div class="line"></div>
+                <div class="line"></div>
+                <div class="line"></div>
+            </div>
+        </div>
+        
     </div>
-</div>
-<div id="attr" onclick="popup()"></div>
+
+    <div id="popup">
+        <div id="phead" onclick="popup()">
+            <div id="aa">TEST</div>
+            <div id="a">✕</div>
+            <div style="clear:both"></div>
+        </div>
+    </div>
+    <div id="attr" onclick="popup()"></div>
 </body>
 <script>
 function popup() {
@@ -88,9 +86,6 @@ function popup() {
        x.style.display='none';}
    else {x.style.display='block';}
 }
-
-$( function() {
-    $( "#draggable" ).draggable();
-  } );
 </script>
+
 </html>
