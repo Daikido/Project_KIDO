@@ -1,9 +1,14 @@
 .component{
+    background-color: white;
+    position: relative;
+    min-width: 100px;
+    min-height: 100px;
     width: 100%;
     height: 100%;
-    border: solid 5px deepskyblue;
+    
 }
 
 .component.blank{
     background-color: gray;
+    opacity: 0.5;
 }

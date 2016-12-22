@@ -1,6 +1,8 @@
 var layoutbar = {
 
     show: function () {
+        function dragIn(ele) { return function () { ele.classList.add("hover") } };
+        function dragOut(ele) { return function () { ele.classList.remove("hover") } };
         [...document.querySelectorAll(".row")].map(row => {
             CreateDom("div", { className: "layoutbar top" }, row, ele => {
                 Drag.end(ele, function (data) {
@@ -8,7 +10,7 @@ var layoutbar = {
                     var newLine = CreateDom("div", { className: "line" }, newRow);
                     newLine.appendChild(data.element);
                     row.parentNode.insertBefore(newRow, row);
-                });
+                }, dragIn(ele), dragOut(ele));
             });
             CreateDom("div", { className: "layoutbar bottom" }, row, ele => {
                 Drag.end(ele, function (data) {
@@ -18,7 +20,7 @@ var layoutbar = {
                     if (row.nextSibling != null)
                         row.parentNode.insertBefore(newRow, row.nextSibling);
                     else row.parentNode.appendChild(newRow);
-                });
+                }, dragIn(ele), dragOut(ele));
             });
         });
         [...document.querySelectorAll(".line")].map(line => {
@@ -27,7 +29,7 @@ var layoutbar = {
                     var newLine = CreateDom("div", { className: "line" });
                     newLine.appendChild(data.element);
                     line.parentNode.insertBefore(newLine, line);
-                });
+                }, dragIn(ele), dragOut(ele));
             });
             CreateDom("div", { className: "layoutbar right" }, line, ele => {
                 Drag.end(ele, function (data) {
@@ -36,7 +38,7 @@ var layoutbar = {
                     if (line.nextSibling != null)
                         line.parentNode.insertBefore(newLine, line.nextSibling);
                     else line.parentNode.appendChild(newLine);
-                });
+                }, dragIn(ele), dragOut(ele));
             });
         });
     },

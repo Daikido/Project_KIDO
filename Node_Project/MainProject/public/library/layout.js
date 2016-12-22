@@ -8,6 +8,13 @@
         })
 
     }
-    setInterval(update, 30);
+    var layoutstarted = false;
+    var mo = new MutationObserver(function(records){
+        if(layoutstarted) return;
+        layoutstarted = true;
+        update();
+        layoutstarted = false;
+    });
+    mo.observe(document, {childList: true, subtree:true});
     update();
 })();
