@@ -1,6 +1,8 @@
 (function (a) { var c = {}, b = c; a.map(function (c) { var a = document.createElement("script"); a.src = c; b.onload = function () { document.body.appendChild(a) }; b = a }); c.onload() })([
     "library/dom.js",
     "library/drag.js",
+    "library/layout.js",
+    "library/layoutbar.js",
     "library/component.js",
     "main.js"
 ]);

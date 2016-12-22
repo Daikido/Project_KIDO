@@ -29,14 +29,26 @@ function Component(folder, onready) {
         readyStateChanged();
     });
 
-
     this.build = function (setting) {
         return CreateDom("div",
             {
                 className: "component",
                 innerHTML: this.html,
-                object: this,
-            }, null, ele => this.script(ele, setting));
+                setting: setting,
+            }, null, ele => {
+                this.script(ele, setting);
+                var placeholder = CreateDom("div", {className:"component blank"});
+                Drag.start(ele,function(){  // on drag
+                    ele.parentNode.insertBefore(placeholder, ele);
+                    ele.remove();
+                    return new DragData(ele.setting ,ele);
+                }, function(){  // success
+                    placeholder.remove();
+                }, function(){  // failed
+                    placeholder.parentNode.insertBefore(ele, placeholder);
+                    placeholder.remove();
+                })
+            });
     }
 
     this.panel = function (callback, setting) {
