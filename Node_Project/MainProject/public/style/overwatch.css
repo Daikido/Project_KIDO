@@ -169,14 +169,12 @@ display: none;
     .row{
         height:33.3%;
         width:100%;
-        background:#f39c12;
         clear:both;
         position:relative;
     }
     .line{
         width:33.3%;
         height:100%;
-        background:#2980b9;
         float:left;
         position:relative;
     }

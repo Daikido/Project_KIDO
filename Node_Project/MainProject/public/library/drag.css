@@ -1,7 +1,7 @@
 .floating{
-    background-color: lightgreen;
     position: fixed;
     pointer-events: none;
+    z-index: 99;
 }
 
 .floating.show{

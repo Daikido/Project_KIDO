@@ -4,7 +4,7 @@
     height: 16px;
     background-color: green;
     opacity: 0.5;
-    z-index: 99;
+    z-index: 1;
 }
 .layoutbar.top{
     top: 0px;

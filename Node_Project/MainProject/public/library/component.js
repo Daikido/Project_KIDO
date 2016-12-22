@@ -38,13 +38,22 @@ function Component(folder, onready) {
             }, null, ele => {
                 this.script(ele, setting);
                 var placeholder = CreateDom("div", {className:"component blank"});
+
+                //█▀▀▄ █▀▀█ █▀▀█ █▀▀█ 
+                //█  █ █▄▄▀ █▄▄█ █ ▄▄ 
+                //█▄▄▀ █  █ █  █ █▄▄█
                 Drag.start(ele,function(){  // on drag
+                    layoutbar.show();
                     ele.parentNode.insertBefore(placeholder, ele);
                     ele.remove();
                     return new DragData(ele.setting ,ele);
                 }, function(){  // success
+                    layoutbar.hide();
+                    if(placeholder.parentNode.parentNode.childNodes.length==1) placeholder.parentNode.parentNode.remove();
+                    if(placeholder.parentNode.childNodes.length==1) placeholder.parentNode.remove();
                     placeholder.remove();
                 }, function(){  // failed
+                    layoutbar.hide();
                     placeholder.parentNode.insertBefore(ele, placeholder);
                     placeholder.remove();
                 })
