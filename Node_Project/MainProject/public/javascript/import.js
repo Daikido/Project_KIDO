@@ -3,6 +3,7 @@
     "library/drag.js",
     "library/layoutbar.js",
     "library/component.js",
+    "library/toolbar.js",    
     "main.js",
     "library/layout.js",
 ]);

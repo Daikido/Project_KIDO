@@ -9,7 +9,7 @@ function Component(folder, onready) {
         if (me.info != null &&
             me.script != null &&
             me.html != null &&
-            me.setting != null) onready();
+            me.setting != null) onready(me);
     }
 
     request(folder + "/info.json", function (info) {
