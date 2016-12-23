@@ -130,6 +130,7 @@ width:6%;
 background: #373737;
 height:1000px;
 border-right: 1px dotted #dcd0c0;
+min-width:100px;
 }
 #tooler{
     display: inline-block;
@@ -144,6 +145,7 @@ float:left;
 width:93%;
 height:1000px;
 background:#373737;
+min-width: 500px;
 }
 #attr{
 position: fixed;
@@ -212,4 +214,4 @@ display: none;
         transition-duration: 0.5s;
     }
 
-   
+
