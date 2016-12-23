@@ -9,13 +9,18 @@ body{
 table{
     cursor:pointer;
     background: #5F5F5F;
+    padding:6px;
 }
 td{
 border: 1px solid grey;
-padding:15px 0px;
+padding:25px 15px;
 }
 td:hover {
     background-color: #333333
+}
+td i{
+font-size:14px;
+color:#B9B9B9;
 }
 td span{
  visibility: hidden;
@@ -70,15 +75,33 @@ li a ,dropbtn{
     padding:20px;
     color: #292929;
 }
-li a:hover dropdown:hover .dropbtn{
-    background-color: #f39c12;
-}              
-li a:active{
-    background-color: #2980b9;
-}       
 li.dropdown {
     display: inline-block;
 }
+.underline {
+  position: relative;
+  color: black;
+}
+.underline:after {
+  display: block;
+  position: absolute;
+  left: 0;
+  bottom: 0px;
+  width: 0;
+  height: 5px;
+  background-color: #c0b283;
+  content: "";
+  transition: width 0.2s;
+}
+.underline:hover {
+  color: #c0b283;
+}
+.underline:hover:after {
+  width: 100%;
+}
+
+   
+
 .dropdown-content {
     display: none;
     position: absolute;
@@ -103,22 +126,24 @@ li.dropdown {
 }
 #toolist{
 float:left;
-width:3%;
-background: #333333;
+width:6%;
+background: #373737;
 height:1000px;
+border-right: 1px dotted #dcd0c0;
 }
 #tooler{
     display: inline-block;
     word-break: break-all;
+      transform: translate(5px);
 }
 table,tr{
     min-width: 43px;
 }
 #content{
 float:left;
-width:97%;
+width:93%;
 height:1000px;
-background:#333333;
+background:#373737;
 }
 #attr{
 position: fixed;
@@ -187,7 +212,4 @@ display: none;
         transition-duration: 0.5s;
     }
 
-    #dtop{position:absolute;top:0%;width:100%;height:16px;background:#34495e;}
-    #dbot{position:absolute;bottom:0%;width:100%;height:5%;background:#34495e;}
-    #dleft{position:absolute;left:0%;height:100%;width:5%;background:#95a5a6;}
-    #dright{position:absolute;right:0%;height:100%;width:5%;background:#95a5a6;}
+   
