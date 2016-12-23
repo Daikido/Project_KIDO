@@ -24,6 +24,4 @@
             toolbar.appendChild(single);
         }
     });
-
 })();
-
