@@ -194,18 +194,7 @@ display: none;
         height:100%;
         min-width: 500px;
     }
-    .row{
-        height:33.3%;
-        width:100%;
-        clear:both;
-        position:relative;
-    }
-    .line{
-        width:33.3%;
-        height:100%;
-        float:left;
-        position:relative;
-    }
+    
     #in{
         background:#e74c3c;
     }

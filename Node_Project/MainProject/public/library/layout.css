@@ -1,0 +1,16 @@
+.row{
+    height: 200px;
+    width:100%;
+    clear:both;
+    position:relative;
+    margin: 0px;
+    padding: 0px;
+}
+.line{
+    top: 0;
+    height:100%;
+    float:left;
+    position:relative;
+    margin: 0px;
+    padding: 0px;
+}
