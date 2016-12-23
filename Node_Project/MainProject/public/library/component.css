@@ -12,3 +12,9 @@
     background-color: gray;
     opacity: 0.5;
 }
+.btncir{
+    border-radius:45%;
+    background: red;
+    display: inline-block;
+    padding:18px 18px;
+    }

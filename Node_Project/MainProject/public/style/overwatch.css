@@ -145,7 +145,7 @@ float:left;
 width:93%;
 height:1000px;
 background:#373737;
-min-width: 500px;
+
 }
 #attr{
 position: fixed;
@@ -192,6 +192,7 @@ display: none;
         margin:0 auto;
         width:70%;
         height:100%;
+        min-width: 500px;
     }
     .row{
         height:33.3%;
