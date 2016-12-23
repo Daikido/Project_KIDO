@@ -8,8 +8,9 @@
             new Component(toolPath, function (component) {
                 i.textContent = component.info.name;
                 Drag.start(td, function () {
+                    layoutbar.show();
                     return new DragData({}, component.build({}));
-                });
+                }, layoutbar.hide, layoutbar.hide);
             });
 
             return tr;

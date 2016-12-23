@@ -28,6 +28,7 @@ function DragHandler() {
         element.addEventListener("mousedown", function (event) {
             event.preventDefault();
             me.dragging = ondrag();
+            floating.innerHTML = "";
             floating.appendChild(me.dragging.element);
             //floating_text.textContent = me.dragging.info;
             me.onsuccess = onsuccess;
