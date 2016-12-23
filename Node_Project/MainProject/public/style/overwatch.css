@@ -1,6 +1,8 @@
 
 body{
     margin: 0;
+    min-height: fit-content;
+    height: 1000px;
 }
 *{
     font-family: cursive;
@@ -56,11 +58,7 @@ td:hover span{
     height: 80px;
     position: relative;
 }
-#selection{
-    position: relative;
-    height:63px;
-    background: white;
-}
+
 ul{
     margin: 0;    
     padding: 0;
@@ -140,10 +138,7 @@ min-width:100px;
 table,tr{
     min-width: 43px;
 }
-#content{
-float:left;
-width:93%;
-height:1000px;
+.content{
 background:#373737;
 
 }

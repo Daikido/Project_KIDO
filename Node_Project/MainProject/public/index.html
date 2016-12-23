@@ -11,64 +11,71 @@
 
 <body>
     <script src="javascript/import.js"></script>
-    <div id="otter"></div>
+    <div class="container">
 
-    <div id="selection">
-        <ul>
-            <li><a href="" class="underline">tutorABC</a></li>
-            <li><a href="" class="underline">Voicetube</a></li>
-            <li class="dropdown">
-                <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
-                <div class="dropdown-content">
-                    <a href="#">Link 1</a>
-                    <a href="#">Link 2</a>
-                    <a href="#">Link 3</a>
-                </div>
-            </li>
+        <div id="otter"></div>
 
-        </ul>
-    </div>
-    <div style="clear:both"></div>
+        <div class="row" layout="64">
+            <ul>
+                <li><a href="" class="underline">tutorABC</a></li>
+                <li><a href="" class="underline">Voicetube</a></li>
+                <li class="dropdown">
+                    <a href="javascript:void(0)" class="dropbtn">Dropdown</a>
+                    <div class="dropdown-content">
+                        <a href="#">Link 1</a>
+                        <a href="#">Link 2</a>
+                        <a href="#">Link 3</a>
+                    </div>
+                </li>
 
-    <div id="toolist">
-
-        <div id="tooler">
-            <table id="toolbar">
-            </table>
+            </ul>
         </div>
-    </div>
+        <div class="row">
 
-    <div id="content">
-        <div id="odd">
-            <div class="row">
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
-                <div class="line"></div>
+
+            <div class="line" layout="200">
+                <table id="toolbar">
+                </table>
             </div>
-        </div>
-        
-    </div>
 
-    <div id="popup">
-        <div id="phead" onclick="popup()">
-            <div id="aa">TEST</div>
-            <div id="a">✕</div>
-            <div style="clear:both"></div>
+            <div class="line content" layout="*1">
+                <div id="odd">
+                    <div class="container">
+
+                        <div class="row" layout="200">
+                            <div class="line"></div>
+                            <div class="line"></div>
+                            <div class="line" layout="*2"></div>
+                            <div class="line"></div>
+                            <div class="line"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
         </div>
-    </div>
-    <div id="attr" onclick="popup()"></div>
+
+        <div id="popup">
+            <div id="phead" onclick="popup()">
+<div id="aa">TEST</div>
+<div id="a">✕</div>
+<div style="clear:both"></div>
+</div>
+</div>
+<div id="attr" onclick="popup()"></div>
+</div>
 </body>
 <script>
-function popup() {
-   var x=document.getElementById('popup');
-   if(x.style.display==='block'){
-       x.style.display='none';}
-   else {x.style.display='block';}
-}
+                        function popup() {
+                            var x = document.getElementById('popup');
+                            if (x.style.display === 'block') {
+                                x.style.display = 'none';
+                            }
+                            else { x.style.display = 'block'; }
+                        }
 
-    
+
 </script>
 
 </html>

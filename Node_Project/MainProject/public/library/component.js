@@ -4,6 +4,8 @@ function Component(folder, onready) {
     this.script = null;
     this.html = null;
     this.setting = null;
+    
+
     var me = this;
     function readyStateChanged() {
         if (me.info != null &&

@@ -20,11 +20,20 @@
     function update() {
 
         [...document.querySelectorAll(".row")].map(row => {
-            var lines = [...row.querySelectorAll(".line")];
-            var layoutguide = ratioCalculate(row.getBoundingClientRect().width, lines.map(l => l.layout || '*1'));
-            console.log(layoutguide);
+            var lines = [...row.querySelectorAll(":scope>.line")];
+            var layoutguide = ratioCalculate(row.getBoundingClientRect().width,
+                lines.map(l => l.attributes.layout != undefined ?l.attributes.layout.value :'*1'));
             lines.map((line, i) => {
                 line.style.width = layoutguide[i].toString() + "px";
+            })
+        });
+
+        [...document.querySelectorAll(".line"),...document.querySelectorAll(".container")].map(row => {
+            var lines = [...row.querySelectorAll(":scope>.row")];
+            var layoutguide = ratioCalculate(row.getBoundingClientRect().height,
+                lines.map(l => l.attributes.layout != undefined ?l.attributes.layout.value :'*1'));
+            lines.map((line, i) => {
+                line.style.height = layoutguide[i].toString() + "px";
             })
         });
 
@@ -37,5 +46,6 @@
         layoutstarted = false;
     });
     mo.observe(document, { childList: true, subtree: true });
+    addEventListener("resize", update);
     update();
 })();

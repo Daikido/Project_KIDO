@@ -1,12 +1,13 @@
 var layoutbar = {
-
     show: function () {
+        var target = document.querySelector("#odd");
+
         function dragIn(ele) { return function () { ele.classList.add("hover") } };
         function dragOut(ele) { return function () { ele.classList.remove("hover") } };
-        [...document.querySelectorAll(".row")].map(row => {
+        [...target.querySelectorAll(".row")].map(row => {
             CreateDom("div", { className: "layoutbar top" }, row, ele => {
                 Drag.end(ele, function (data) {
-                    var newRow = CreateDom("div", { className: "row" });
+                    var newRow = CreateDom("div", { className: "row" },null, ele=>ele.setAttribute("layout", "200"));
                     var newLine = CreateDom("div", { className: "line" }, newRow);
                     newLine.appendChild(data.element);
                     row.parentNode.insertBefore(newRow, row);
@@ -14,7 +15,7 @@ var layoutbar = {
             });
             CreateDom("div", { className: "layoutbar bottom" }, row, ele => {
                 Drag.end(ele, function (data) {
-                    var newRow = CreateDom("div", { className: "row" });
+                    var newRow = CreateDom("div", { className: "row" },null, ele=>ele.setAttribute("layout", "200"));
                     var newLine = CreateDom("div", { className: "line" }, newRow);
                     newLine.appendChild(data.element);
                     if (row.nextSibling != null)
@@ -23,7 +24,7 @@ var layoutbar = {
                 }, dragIn(ele), dragOut(ele));
             });
         });
-        [...document.querySelectorAll(".line")].map(line => {
+        [...target.querySelectorAll(".line")].map(line => {
             CreateDom("div", { className: "layoutbar left" }, line, ele => {
                 Drag.end(ele, function (data) {
                     var newLine = CreateDom("div", { className: "line" });
