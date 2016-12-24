@@ -53,9 +53,10 @@
     });
     mo.observe(document, { childList: true, subtree: true });
     addEventListener("resize", function(){
-        setTimeout(function() {
-            update();
-        }, 5000);
+        document.body.style.overflow = "hidden";
+        update();
+        document.body.style.overflow = "auto";
+        update();
     });
     update();
 })();
