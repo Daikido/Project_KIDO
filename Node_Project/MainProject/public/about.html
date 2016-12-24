@@ -5,56 +5,112 @@
     <meta charset="UTF-8">
     <title>Document</title>
     <style>
-        .c0{
-            background-color: white;
-        }
-        .c1{
-            background-color: indianred;
-        }
-        .c2{
-            background-color: darkorange;
-        }
-        .c3{
-            background-color: seagreen;
-        }
-        .c4{
-            background-color: dodgerblue;
-        }
+    body{
+        font-family: 微軟正黑體;
+    }
+    .title{
+        background-color: mediumseagreen;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.4);
+        
+    }
+    .bg{
+        background-color: gray;
+    }
+    .content{
+        padding: 32px;
+        position: relative;
+    }
+    .page{
+        width: 60%;
+        height: 100%;
+        max-width: 100%;
+        min-width: 500px;
+        background-color: white;
+
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2), 0px 0px 1px rgba(255,255,255,0.5);
+        
+    }
+    .toolbar{
+        background-color: dimgray;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+        
+    }
+    .circle{
+        width: 64px;
+        height: 64px;
+        background-color: orange;
+        border-radius: 32px;
+        text-align: center;
+        box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2), 0px 0px 1px rgba(255,255,255,0.5);
+
+    }
+    .cut{
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+    }
+    img{
+        width: 100%;
+    }
     </style>
 </head>
 
 <body>
-
     <div class="layer">
-        <div class="row c1" layout="*0.618">
-            <div class="line c2" layout="*0.618">
-                <div class="row"></div>
-                <div class="row c3" layout="*0.618">
+        <div class="row" layout="64"></div>
+        <div class="row title" layout="64">
+        </div>
+        <div class="row" layout="0">
+            <div class="layer">
+                <div class="row center-v" layout="2">
                     <div class="line"></div>
-                    <div class="line c4" layout="*0.618">
-
-                        <div class="row c0" layout="*0.618">
-                            <div class="line c1" layout="*0.618">
-                                <div class="row"></div>
-                                <div class="row c2" layout="*0.618">
-                                    <div class="line"></div>
-                                    <div class="line c3" layout="*0.618">
-
-                                    </div>
-                                </div>
+                    <div class="line" layout="0">
+                        <div class="circle center">
+                            <div class="center">
+                                EDIT
                             </div>
-                            <div class="line"></div>
                         </div>
-                        <div class="row"></div>
-
                     </div>
+                    <div class="line" layout="128"></div>
                 </div>
             </div>
-            <div class="line"></div>
         </div>
-        <div class="row"></div>
-    </div>
+        <div class="row">
+            <div class="line" layout="192">
+                <div class="layer toolbar">
 
+                </div>
+            </div>
+            <div class="line">
+                <div class="row bg" layout="16"></div>
+                <div class="row bg">
+                    <div class="center page">
+                        <div class="layer">
+                            <div class="row" layout="128">
+                                <div class="cut">
+                                    <img class="center" src="http://www.ricoh-imaging.co.jp/english/r_dc/caplio/r7/img/sample_04.jpg" alt="">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="content">
+                                    <h1>你好</h1>
+                                    <p>這是內容</p>
+                                </div>
+                            </div>
+                            <div class="row" layout="128">
+                                <div class="cut">
+                                    <img class="center" src="http://www.ricoh-imaging.co.jp/english/r_dc/caplio/r7/img/sample_04.jpg" alt="">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row bg" layout="16"></div>
+            </div>
+        </div>
+
+    </div>
     <script src="framework/daikido.js"></script>
     <link rel="stylesheet" href="framework/daikido.css">
 </body>

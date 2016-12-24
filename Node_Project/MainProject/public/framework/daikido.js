@@ -1,5 +1,4 @@
 (function () {
-
     function ratioCalculate(max, guide) {
         guide = guide.map(g => {
             if (g == null) return { type: "ratio", value: 1 };
@@ -11,30 +10,41 @@
 
         if (sum <= max) {
             var remain = max - sum;
-            return guide.map(g => g.type == "ratio" ? Math.floor(remain * g.value / sumr) : g.value);
+            var result = guide.map(g => g.type == "ratio" ? Math.round(remain * g.value / sumr) : g.value);
+            var sum = result.reduce((a,b)=>a+b,0);
+            result[result.length-1]-=sum-max;
+            return result;
         } return guide.map(g => (g.type == "ratio" ? 0 : g.value));
     }
-    function layoutRow(row, max){
+    function layoutRow(row, width, height){
         var lines = [...row.querySelectorAll(":scope>.line")];
-        var layoutguide = ratioCalculate(max,
+        var layoutguide = ratioCalculate(width,
             lines.map(l => l.attributes.layout != undefined ?l.attributes.layout.value :'*1'));
         lines.map((line, i) => {
             line.style.width = layoutguide[i].toString() + "px";
-            layoutLine(line, row.getBoundingClientRect().height);
+            layoutLine(line, layoutguide[i], height);
         })
     }
-    function layoutLine(row, max){
+    function layoutLine(row, width, height){
         var lines = [...row.querySelectorAll(":scope>.row")];
-        var layoutguide = ratioCalculate(max,
+        var layoutguide = ratioCalculate(height,
             lines.map(l => l.attributes.layout != undefined ?l.attributes.layout.value :'*1'));
         lines.map((line, i) => {
             line.style.height = layoutguide[i].toString() + "px";
-            layoutRow(line, row.getBoundingClientRect().width);
+            layoutRow(line,width, layoutguide[i]);
         })
     }
 
-    function update() {
-        [...document.querySelectorAll(".layer")].map(ele=>layoutLine(ele, ele.getBoundingClientRect().height));
+    function update(info) {
+        console.log(info);
+        [...document.querySelectorAll(".layer")].map((ele, i, arr)=>{
+            ele.style.zIndex = arr.length-i;
+            layoutLine(ele, ele.getBoundingClientRect().width, ele.getBoundingClientRect().height);
+        });
+        [...document.querySelectorAll(".layer")].map((ele, i, arr)=>{
+            ele.style.zIndex = arr.length-i;
+            layoutLine(ele, ele.getBoundingClientRect().width, ele.getBoundingClientRect().height);
+        });
     }
 
     var layoutstarted = false;
