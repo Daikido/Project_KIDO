@@ -1,10 +1,74 @@
-.popout{
-    position: fixed;
-    left:50%;
-    top:50%;
-    transform: translate(-50%,0);
-    width:100%;
-    height:100%;
-    z-index:2;
-    background:lightgreen;
-}
+.popoutback{
+            height:100%;
+            width:100%;
+            background: rgba(0,0,0,0.6);
+        }
+        .popout.in{
+            background: rgb(176,255,165);
+            position: fixed;
+            left: 50%;
+            top:25%;
+            transform: translate(-50%);
+            width: 20%;
+            height: 15%;
+            text-align: center;
+            padding: 3%;
+            border: 4px solid #e3f3f1;
+        }
+        .input{
+            position: absolute;
+            top:40%;
+            left:50%;
+            transform: translate(-50%);
+            border: 1px solid #909090;
+            padding:2%;
+            white-space:nowrap;  
+            width: 30%;
+            margin: 1%;
+        }
+        #ok{
+            position: absolute;
+            bottom: 15%;
+            right:51%; 
+            border:  2px solid #479cd6;
+            font-family: "Brown Pro",Verdana,Arial,sans-serif;
+            color:#479cd6;
+            background: white;
+            padding:2%;
+            white-space:nowrap;  
+            width: 25%;
+        }
+        #cancel{
+            position: absolute;
+            bottom: 15%;
+            right:21%; 
+            border:  2px solid #479cd6;
+            font-family: "Brown Pro",Verdana,Arial,sans-serif;
+            color:#479cd6;
+            background: white;
+            padding:2%;
+            white-space:nowrap;  
+            width: 25%;
+        }
+        #trash{
+            position: fixed;
+            right:5%;
+            bottom:5%;
+            z-index: 2;
+            font-size: 87px;
+            color: orange;
+            border-radius: 40px;
+            width:4.8%;
+            padding:0px;
+        }
+        #circle{
+            position: fixed;
+            right:10%;
+            bottom:5%;
+            z-index: 2;
+            font-size: 87px;
+            color: orange;
+            border-radius: 40px;
+            width:4.8%;
+            padding:0px;
+        }

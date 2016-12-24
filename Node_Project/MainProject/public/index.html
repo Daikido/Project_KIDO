@@ -6,16 +6,26 @@
     <title>Document</title>
     <link rel="stylesheet" href="style/overwatch.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
-
+ 
 </head>
 
 <body>
     <script src="javascript/import.js"></script>
+    
     <div class="container">
 
-        <div id="otter"></div>
+        <div class="row top" layout="80">
+            <img src="aikido.jpg" alt="aikido" id="daikido"></img>
+            <div class="line top" layout="30" ></div>
+             <div class="line top" layout="100" id="aikido">Aikido</div>
+             <div class="line top" layout="1000" ></div>
+            <div class="line top" layout="300" id="keepcalm">Keep Calm</div>
+            <div class="line top" layout="100" id="and">&</div>
+            <div class="line top" layout="100" id="practice">Practice </div>
+            
+        </div>
 
-        <div class="row" layout="64">
+        <div class="row mid" layout="64">
             <ul>
                 <li><a href="" class="underline">tutorABC</a></li>
                 <li><a href="" class="underline">Voicetube</a></li>
@@ -33,12 +43,29 @@
         <div class="row">
 
 
-            <div class="line" layout="200">
-                <table id="toolbar">
-                </table>
+            <div class="line left" layout="90.2">
+                <table id="toolbar" >
+                    <span id="shead">TOOL</span>
+  <tr>
+    <td><i  >attach</i><span>fsaf</span></td>
+  </tr>
+  <tr>
+    <td><i >attach</i></td>
+  </tr>
+
+  <tr>
+    <td><i  >attach</i><span>fsaf</span></td>
+  </tr>
+  <tr>
+    <td><i  >attach</i><span>fsaf</span></td>
+  </tr>
+  <tr>
+    <td><i  >attach</i><span>fsaf</span></td>
+  </tr>
+</table>
             </div>
 
-            <div class="line content" layout="*1">
+            <div class="line content" layout="1819.78">
                 <div id="odd">
                     <div class="container">
 
@@ -65,6 +92,8 @@
 </div>
 <div id="attr" onclick="popup()"></div>
 </div>
+<i class="material-icons" id="trash">delete_forever</i>
+        <i class="material-icons" id="circle">add_circle_outline</i>
 </body>
 <script>
                         function popup() {
