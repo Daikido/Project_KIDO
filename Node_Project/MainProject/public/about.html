@@ -1,19 +1,62 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
+    <style>
+        .c0{
+            background-color: white;
+        }
+        .c1{
+            background-color: indianred;
+        }
+        .c2{
+            background-color: darkorange;
+        }
+        .c3{
+            background-color: seagreen;
+        }
+        .c4{
+            background-color: dodgerblue;
+        }
+    </style>
 </head>
+
 <body>
-    <script src="library/layout.js"></script>
-    <link rel="stylesheet" href="library/layout.css">
 
-    
-    <div class="container">
-        <div class="row" layout="200" style="background-color: green">
+    <div class="layer">
+        <div class="row c1" layout="*0.618">
+            <div class="line c2" layout="*0.618">
+                <div class="row"></div>
+                <div class="row c3" layout="*0.618">
+                    <div class="line"></div>
+                    <div class="line c4" layout="*0.618">
 
+                        <div class="row c0" layout="*0.618">
+                            <div class="line c1" layout="*0.618">
+                                <div class="row"></div>
+                                <div class="row c2" layout="*0.618">
+                                    <div class="line"></div>
+                                    <div class="line c3" layout="*0.618">
+
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="line"></div>
+                        </div>
+                        <div class="row"></div>
+
+                    </div>
+                </div>
+            </div>
+            <div class="line"></div>
         </div>
-
+        <div class="row"></div>
     </div>
+
+    <script src="framework/daikido.js"></script>
+    <link rel="stylesheet" href="framework/daikido.css">
 </body>
+
 </html>
