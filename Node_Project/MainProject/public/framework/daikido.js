@@ -3,19 +3,13 @@
         var style = getComputedStyle(element);
         return {
             width:
-            parseInt(style.marginLeft) +
-            parseInt(style.marginRight) +
-            parseInt(style.borderLeftWidth) +
-            parseInt(style.borderRightWidth) +
-            parseInt(style.paddingLeft) +
-            parseInt(style.paddingRight),
+            parseInt(style.marginLeft) + parseInt(style.marginRight) +
+            parseInt(style.borderLeftWidth) + parseInt(style.borderRightWidth) +
+            parseInt(style.paddingLeft) + parseInt(style.paddingRight),
             height:
-            parseInt(style.marginTop) +
-            parseInt(style.marginBottom) +
-            parseInt(style.borderTopWidth) +
-            parseInt(style.borderBottomWidth) +
-            parseInt(style.paddingTop) +
-            parseInt(style.paddingBottom)
+            parseInt(style.marginTop) + parseInt(style.marginBottom) +
+            parseInt(style.borderTopWidth) + parseInt(style.borderBottomWidth) +
+            parseInt(style.paddingTop) + parseInt(style.paddingBottom)
         }
     }
 
@@ -37,45 +31,32 @@
         }
         return guide.map(g => (g.type == "ratio" ? 0 : g.value));
     }
-    function layoutRow(row, width, height, master) {
-        if(!master){
-            var offset = getOffsetSize(row);
-            height-=offset.height;
-            width-=offset.width;
-            row.style.width = width+"px";
-            row.style.height = height+"px";  
+
+    function layout(type, ele, width, height, master) {
+        if (!master) {
+            var offset = getOffsetSize(ele);
+            height -= offset.height;
+            width -= offset.width;
+            ele.style.width = width + "px";
+            ele.style.height = height + "px";
         }
-        
-        var lines = Array.from(row.querySelectorAll(":scope>.line"));
-        var layoutguide = ratioCalculate(width,
-            lines.map(l => l.attributes.layout != undefined ? l.attributes.layout.value : '*1'));
-        lines.map((line, i) => {
-            layoutLine(line, layoutguide[i], height);
+
+        var eles = Array.from(ele.querySelectorAll(":scope>." + { row: "line", line: "row" }[type]));
+        var layoutguide = ratioCalculate({ row: width, line: height }[type],
+            eles.map(l => l.attributes.layout != undefined ? l.attributes.layout.value : '*1'));
+        eles.map((ele, i) => {
+            layout({ row: "line", line: "row" }[type], ele,
+                type == "row" ? layoutguide[i] : width,
+                type == "line" ? layoutguide[i] : height);
         })
-    }
-    function layoutLine(row, width, height, master) {
-        if(!master){
-            var offset = getOffsetSize(row);
-            height-=offset.height;
-            width-=offset.width;
-            row.style.width = width+"px";
-            row.style.height = height+"px";            
-        }
-        
-        var lines = Array.from(row.querySelectorAll(":scope>.row"));
-        var layoutguide = ratioCalculate(height,
-            lines.map(l => l.attributes.layout != undefined ? l.attributes.layout.value : '*1'));
-        lines.map((line, i) => {
-            layoutRow(line, width, layoutguide[i]);
-        });
     }
 
     function update(info) {
         Array.from(document.querySelectorAll(".container")).map((ele, i, arr) => {
-            ele.style.zIndex = arr.length - i;
             var rect = ele.getBoundingClientRect();
-            layoutLine(ele, rect.width, rect.height, true);
+            layout("line", ele, rect.width, rect.height, true);
         });
+        Array.from(document.querySelectorAll("[layer]")).map(ele=>ele.style.zIndex = ele.attributes.layer);
     }
 
     var mo = new MutationObserver(function (records) {
@@ -83,6 +64,7 @@
         update();
         mo.observe(document, config);
     });
+
     var config = { childList: true, subtree: true, attributes: true };
 
     addEventListener("resize", function () {
@@ -91,9 +73,10 @@
         document.body.style.overflow = "auto";
         update();
     });
+
     setTimeout(function () {
         update();
     }, 0);
+
     mo.observe(document, config);
-    window.update = update;
 })();
