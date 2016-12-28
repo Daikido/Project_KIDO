@@ -1,26 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
 </head>
+
 <body>
+
     <div class="container">
-
-        <div class="row" color="red" shade="100"></div>
-        <div class="row" color="red" shade="500"></div>
-        <div class="row" color="red" shade="900"></div>
-        <div class="row" color="orange" shade="900"></div>
-        <div class="row" color="yellow" shade="500"></div>
-        <div class="row" color="green" shade="300"></div>
-        <div class="row" color="blue" shade="500"></div>
-        <div class="row" color="purple" shade="900"></div>
-
+        <div class="row">
+            <div class="line" color="red" shade="700"></div>
+            <div class="line" layout="10" color="black"></div>
+            <div class="line"></div>
         </div>
-
+        <div class="row" layout="10" color="black"></div>
+        <div class="row">
+            <div class="line"></div>
+            <div class="line" layout="10" color="black"></div>
+            <div class="line">
+                <div class="row">
+                    <div class="line">
+                        <div class="row"></div>
+                        <div class="row" layout="10" color="black"></div>
+                        <div class="row" layout="50">
+                            <div class="line" color="yellow">
+                                <p class="wrap center">daikidooooooooooooooooooooo</p>
+                            </div>
+                            <div class="line" layout="10" color="black"></div>
+                            <div class="line" color="grey" shade="900">
+                                
+                            </div>
+                        </div>
+                    </div>
+                    <div class="line" layout="10" color="black"></div>
+                    <div class="line" layout="100">
+                        <div class="row" layout="*0.9" color="blue" shade="800"></div>
+                        <div class="row" layout="10" color="black"></div>
+                        <div class="row"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="framework/daikido.js"></script>
     <link rel="stylesheet" href="framework/daikido.css">
 </body>
+
 </html>
