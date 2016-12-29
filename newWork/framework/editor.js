@@ -20,8 +20,9 @@ function hightLight(element) {
         ele.style.left = rect.left - rect2.left + "px";
         ele.style.width = rect.width + "px";
         ele.style.height = rect.height + "px";
-        ele.style.boxShadow = "0 0 100px black, inset 0 0 10px white, 0 0 20px red,inset 0 0 2px red";
+        ele.style.boxShadow = "0 0 100px black, inset 0 0 10px white";
         ele.style.borderRadius = "10px";
+        ele.style.zIndex = "99";
     })
 }
 addEventListener("keydown", function (e) {
@@ -37,22 +38,30 @@ function activeEditor() {
         className: "container editor"
     });
 
+
+
+    var panel = createDom("div", {
+        className: "row editor",
+    }, main, ele => {
+        ele.setAttribute("layout", "64");
+        ele.setAttribute("color", "black");
+    });
+
     var content = createDom("div", {
         className: "row editor",
         innerHTML: document.body.innerHTML
     }, main, ele => ele.style.overflow = "hidden");
 
-    var panel = createDom("div", {
-        className: "row editor",
-
-    }, main, ele => ele.setAttribute("layout", "64"));
     document.body.innerHTML = "";
 
     content.addEventListener("click", function (e) {
         console.log(e);
         if (e.srcElement.classList.contains("editor-heightlight")) clearSelection();
         else if (e.srcElement.classList.contains("editor"));
-        else hightLight(e.srcElement);
+        else {
+            hightLight(e.srcElement);
+            e.preventDefault();
+        }
     })
 
     document.body.appendChild(main);
@@ -82,7 +91,7 @@ function activeEditor() {
         array.map(e => {
             createDom("div", { className: "line fadein hover" }, panel, ele => {
 
-                createDom("h1", { className: "wrap center", textContent: e.text }, ele, t => {
+                createDom("p", { className: "wrap center", textContent: e.text }, ele, t => {
                     t.setAttribute("color", e.tcolor || "black");
                 });
 
@@ -131,22 +140,22 @@ function activeEditor() {
 
     function objCreateMenu() {
 
-        
+
         var target = selectedElement;
 
         function createElement() {
             target = selectedElement;
 
-            if(target!=null)
-            while (target.parentNode != null && !(
-                target.parentNode.classList.contains("container") ||
-                target.parentNode.classList.contains("row") ||
-                target.parentNode.classList.contains("line"))) {
-                target = target.parentNode;
-            }
+            if (target != null)
+                while (target.parentNode != null && !(
+                    target.parentNode.classList.contains("container") ||
+                    target.parentNode.classList.contains("row") ||
+                    target.parentNode.classList.contains("line"))) {
+                    target = target.parentNode;
+                }
 
-            if(target!=null)        
-            if(target.classList.contains("editor")) return;
+            if (target != null)
+                if (target.classList.contains("editor")) return;
 
             var className = "row";
             if (target.parentNode.classList.contains("row")) className = "line";
@@ -158,7 +167,7 @@ function activeEditor() {
         }
         function createElement2() {
             var className = "row";
-            if(target==null) return createDom("div", {className:"page"});
+            if (target == null) return createDom("div", { className: "page" });
             if (target.classList.contains("row")) className = "line";
             if (target.classList.contains("container")) className = "page";
             var div = createDom("div", {
@@ -172,28 +181,28 @@ function activeEditor() {
             { text: "X", tcolor: "red", onclick: objMenu },
             {
                 text: "前面", onclick: function () {
-                    if(target==null) return;          
+                    if (target == null) return;
                     var element = createElement()
                     target.parentNode.insertBefore(element, target);
-                    setTimeout(function(){hightLight(element)}, 100);
+                    setTimeout(function () { hightLight(element) }, 100);
                 }
             },
             {
                 text: "後面", onclick: function () {
-                    if(target==null) return;                              
-                    var element = createElement();                    
-                    if(target.nextSibling!=null)
-                    target.parentNode.insertBefore(element, target.nextSibling);
+                    if (target == null) return;
+                    var element = createElement();
+                    if (target.nextSibling != null)
+                        target.parentNode.insertBefore(element, target.nextSibling);
                     else target.parentNode.appendChild(element);
-                    setTimeout(function(){hightLight(element)}, 100);              
+                    setTimeout(function () { hightLight(element) }, 100);
                 }
             },
             {
                 text: "裡面", onclick: function () {
-                    if(target==null) target=content;                  
-                    var element = createElement2();                    
+                    if (target == null) target = content;
+                    var element = createElement2();
                     target.appendChild(element);
-                    setTimeout(function(){hightLight(element)}, 100);              
+                    setTimeout(function () { hightLight(element) }, 100);
                 }
             },
 
