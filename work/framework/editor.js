@@ -18,16 +18,18 @@ function hightLight(element) {
         ele.style.position = "absolute";
         ele.style.top = rect.top - rect2.top + "px";
         ele.style.left = rect.left - rect2.left + "px";
-        ele.style.width = rect.width + "px";
-        ele.style.height = rect.height + "px";
+        ele.style.width = rect.width-4 + "px";
+        ele.style.height = rect.height-4 + "px";
         ele.style.boxShadow = "0 0 100px black, inset 0 0 10px white";
         ele.style.borderRadius = "10px";
         ele.style.zIndex = "99";
+        ele.style.border="solid 2px white"
     })
 }
 
 function showBorder(ele){
     [...ele.querySelectorAll('.row,.line')].map(e=>{
+        e.style.border=e.editortemp;
         e.editortemp = e.style.border;
         e.style.border="solid 1px gray";
     });
@@ -57,7 +59,7 @@ function activeEditor() {
         className: "row editor",
     }, main, ele => {
         ele.setAttribute("layout", "64");
-        ele.setAttribute("color", "black");
+        ele.setAttribute("color", "white");
     });
 
     var content = createDom("div", {
@@ -78,10 +80,12 @@ function activeEditor() {
     })
 
     document.body.appendChild(main);
+    daikido.pageUpdate(0);    
 
     closeEditor = function () {
         clearSelection();
         document.body.innerHTML = content.innerHTML;
+        daikido.pageUpdate(0);
     }
     content.style.overflow = "hidden";
 
@@ -102,7 +106,7 @@ function activeEditor() {
     function drawMenu(array, back) {
         panel.innerHTML = "";
         if(back instanceof Function ) 
-        array.unshift({ text: "<", tcolor: "red", onclick: back, layout:"128" })
+        array.unshift({ text: "く", tcolor: "red", onclick: back, layout:"128" })
         array.map(e => {
             createDom("div", { className: "line fadein hover" }, panel, ele => {
 
@@ -145,8 +149,8 @@ function activeEditor() {
     function objMenu() {
         showBorder(content);
         drawMenu([
-            { text: "新增", color: "green", onclick: objCreateMenu },
-            { text: "刪除", color: "red", onclick: deleteSelected },
+            { text: "新增", tcolor: "green", onclick: objCreateMenu },
+            { text: "刪除", tcolor: "red"  , onclick: deleteSelected },
         ], menu)
     }
 
