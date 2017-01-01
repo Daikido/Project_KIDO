@@ -140,7 +140,7 @@ function activeEditor() {
                             if (r == null) selectedElement.setAttribute("color", "none");
                             selectedElement.setAttribute("color", r.color);
                             selectedElement.setAttribute("shade", r.shade);
-                        }, objMenu);
+                        }, contentMenu);
                 }
             }
         ], menu);
