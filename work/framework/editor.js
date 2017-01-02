@@ -25,10 +25,10 @@ function hightLight(element) {
         ele.style.left = rect.left - rect2.left + "px";
         ele.style.width = rect.width - 4 + "px";
         ele.style.height = rect.height - 4 + "px";
-        ele.style.boxShadow = "0 0 100px black, inset 0 0 10px white";
+        ele.style.boxShadow = "0 0 100px black, inset 0 0 20px black";
         ele.style.borderRadius = "10px";
         ele.style.zIndex = "99";
-        ele.style.border = "solid 2px black"
+        ele.style.border = "solid 2px white"
     })
 }
 
@@ -66,6 +66,7 @@ function activeEditor() {
     }, main, ele => {
         ele.setAttribute("layout", "64");
         ele.setAttribute("color", "white");
+        ele.style.overflow = "hidden";
     });
 
     var content = createDom("div", {
@@ -75,15 +76,29 @@ function activeEditor() {
 
     document.body.innerHTML = "";
 
-    content.addEventListener("click", function (e) {
-        console.log(e);
-        if (e.srcElement.classList.contains("editor-heightlight")) clearSelection();
+    var clickedSelection = false;
+    content.addEventListener("mousedown", function (e) {
+        if (e.srcElement.classList.contains("editor-heightlight")) {
+            clickedSelection = true;
+            e.preventDefault();
+        }
         else if (e.srcElement.classList.contains("editor"));
         else {
+            clickedSelection = false;            
             hightLight(e.srcElement);
             e.preventDefault();
         }
-    })
+    });
+
+    content.addEventListener("mouseup", function (e) {
+        if (e.srcElement.classList.contains("editor-heightlight")) {
+            if(clickedSelection) clearSelection();
+        }        
+        if (e.srcElement.classList.contains("editor")) return;
+        if (selectedElement != null) hightLight(selectedElement.parentNode);
+        clickedSelection = false;
+
+    });
 
     document.body.appendChild(main);
     daikido.pageUpdate(0);
@@ -203,6 +218,7 @@ function activeEditor() {
 
     var reverseAnimation = false;
     function drawMenu(array, back) {
+        mousedown = false;
         panel.innerHTML = "";
         if (back instanceof Function)
             array.unshift({ text: "く", tcolor: "red", onclick: back, layout: "64", back: true })
@@ -217,9 +233,15 @@ function activeEditor() {
                 ele.setAttribute("layout", e.layout || "*1");
                 ele.setAttribute("color", e.color || "white");
                 ele.setAttribute("shade", e.shade || "500");
-
-                ele.onclick = e.onclick;
-                if (e.back) ele.onclick = function () {
+                ele.addEventListener("mousedown", function (m) {
+                    m.preventDefault();
+                });
+                ele.onclick = function (m) {
+                    m.preventDefault();
+                    e.onclick();
+                }
+                if (e.back) ele.onclick = function (m) {
+                    m.preventDefault();
                     reverseAnimation = true;
                     e.onclick();
                     reverseAnimation = false;
