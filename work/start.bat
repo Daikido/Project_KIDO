@@ -1,0 +1,1 @@
+start chrome --app=file:///%cd%
