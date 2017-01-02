@@ -7,6 +7,11 @@ function clearSelection() {
     [...document.querySelectorAll(".editor-heightlight")].map(e => e.remove());
 }
 
+window.daikido.onrefresh(function () {
+    if (selectedElement != null)
+        hightLight(selectedElement);
+});
+
 function hightLight(element) {
     clearSelection();
     selectedElement = element;
@@ -18,26 +23,27 @@ function hightLight(element) {
         ele.style.position = "absolute";
         ele.style.top = rect.top - rect2.top + "px";
         ele.style.left = rect.left - rect2.left + "px";
-        ele.style.width = rect.width-4 + "px";
-        ele.style.height = rect.height-4 + "px";
+        ele.style.width = rect.width - 4 + "px";
+        ele.style.height = rect.height - 4 + "px";
         ele.style.boxShadow = "0 0 100px black, inset 0 0 10px white";
         ele.style.borderRadius = "10px";
         ele.style.zIndex = "99";
-        ele.style.border="solid 2px white"
+        ele.style.border = "solid 2px black"
     })
 }
 
-function showBorder(ele){
-    [...ele.querySelectorAll('.row,.line')].map(e=>{
-        e.style.border=e.editortemp;
+function showBorder(ele) {
+    /*
+    [...ele.querySelectorAll('.row,.line')].map(e => {
+        e.style.border = e.editortemp;
         e.editortemp = e.style.border;
-        e.style.border="solid 1px gray";
-    });
+        e.style.border = "solid 1px gray";
+    });*/
 }
-function hideBorder(ele){
-    [...ele.querySelectorAll('.row,.line')].map(e=>{
-        e.style.border=e.editortemp;
-    });
+function hideBorder(ele) {/*
+    [...ele.querySelectorAll('.row,.line')].map(e => {
+        e.style.border = e.editortemp;
+    });*/
 }
 
 addEventListener("keydown", function (e) {
@@ -80,7 +86,7 @@ function activeEditor() {
     })
 
     document.body.appendChild(main);
-    daikido.pageUpdate(0);    
+    daikido.pageUpdate(0);
 
     closeEditor = function () {
         clearSelection();
@@ -91,26 +97,121 @@ function activeEditor() {
 
 
     // methods
-
+    function notEditor(ele) {
+        if (ele == null) return null;
+        return ele.classList.contains("editor") ? null : ele;
+    }
     function deleteSelected() {
+        var last =
+            notEditor(selectedElement.previousElementSibling) ||
+            notEditor(selectedElement.nextElementSibling) ||
+            notEditor(selectedElement.parentNode);
         selectedElement.remove();
-        clearSelection();
+        hightLight(last);
     }
 
     function setText() {
-        var result = prompt("請輸入文字", selectedElement.textContent);
-        if (result != null) selectedElement.textContent = result;
+
+        if (selectedElement.nodeName.toLowerCase() == "div") {
+            var result = prompt("請輸入文字", "");
+            if (result != null) createDom("p", { textContent: result }, selectedElement);
+        } else {
+            var result = prompt("請輸入文字", selectedElement.textContent);
+            if (result != null) selectedElement.textContent = result;
+        }
     }
 
+    function setLayout() {
+        var result = prompt("請輸入比例或大小", (selectedElement.attributes.layout || { value: "*1" }).value);
+        if (result != null) {
+            selectedElement.setAttribute("layout", result);
+        }
+    }
 
+    function setSize() {
+        function reset(tag) {
+            selectedElement.classList.remove("big");
+            selectedElement.classList.remove("mid");
+            selectedElement.classList.remove("normal");
+            if (tag != null) selectedElement.classList.add(tag);
+        }
+        if (selectedElement == null) return;
+        drawMenu([
+            { text: "大", onclick: reset.bind(null, "big") },
+            { text: "中", onclick: reset.bind(null, "mid") },
+            { text: "一般", onclick: reset.bind(null, "normal") },
+            { text: "正常", onclick: reset.bind(null, null) }
+        ], contentMenu);
+    }
+    function setAlign() {
+        drawMenu([
+            {
+                text: "水平", onclick: function () {
+                    function reset(tag) {
+                        if (selectedElement.classList.contains("center")) {
+                            selectedElement.classList.remove("center");
+                            selectedElement.classList.add("center-v");
+                        }
+                        selectedElement.classList.add("wrap");
+                        selectedElement.classList.remove("left");
+                        selectedElement.classList.remove("right");
+                        selectedElement.classList.remove("center-h");
+                        if (tag != null) selectedElement.classList.add(tag);
+                        if (selectedElement.classList.contains("center-h") &&
+                            selectedElement.classList.contains("center-v")) {
+                            selectedElement.classList.remove("center-h");
+                            selectedElement.classList.remove("center-v");
+                            selectedElement.classList.add("center");
+                        }
+                    }
+                    drawMenu([
+                        { text: "左", onclick: reset.bind(null, "left") },
+                        { text: "中", onclick: reset.bind(null, "center-h") },
+                        { text: "右", onclick: reset.bind(null, "right") },
+                        { text: "無", onclick: reset.bind(null, null) },
+                    ], setAlign);
+                }
+            },
+            {
+                text: "垂直", onclick: function () {
+                    function reset(tag) {
+                        if (selectedElement.classList.contains("center")) {
+                            selectedElement.classList.remove("center");
+                            selectedElement.classList.add("center-h");
+                        }
+                        selectedElement.classList.add("wrap");
+                        selectedElement.classList.remove("top");
+                        selectedElement.classList.remove("bottom");
+                        selectedElement.classList.remove("center-v");
+                        if (tag != null) selectedElement.classList.add(tag);
+                        if (selectedElement.classList.contains("center-h") &&
+                            selectedElement.classList.contains("center-v")) {
+                            selectedElement.classList.remove("center-h");
+                            selectedElement.classList.remove("center-v");
+                            selectedElement.classList.add("center");
+                        }
+                    }
+                    drawMenu([
+                        { text: "上", onclick: reset.bind(null, "top") },
+                        { text: "中", onclick: reset.bind(null, "center-v") },
+                        { text: "下", onclick: reset.bind(null, "bottom") },
+                        { text: "無", onclick: reset.bind(null, null) },
+                    ], setAlign);
+                }
+            }], contentMenu);
+    }
+
+    var reverseAnimation = false;
     function drawMenu(array, back) {
         panel.innerHTML = "";
-        if(back instanceof Function ) 
-        array.unshift({ text: "く", tcolor: "red", onclick: back, layout:"128" })
+        if (back instanceof Function)
+            array.unshift({ text: "く", tcolor: "red", onclick: back, layout: "64", back: true })
         array.map(e => {
-            createDom("div", { className: "line fadein hover" }, panel, ele => {
+            createDom("div", {
+                className: "line hover " + (reverseAnimation ? "fadeout" : "fadein")
+            }, panel, ele => {
 
-                createDom("h1", { className: "wrap center", textContent: e.text }, ele, t => {
+                createDom("h2", { className: "wrap center", textContent: e.text }, ele, t => {
                     t.setAttribute("color", e.tcolor || "black");
                 });
                 ele.setAttribute("layout", e.layout || "*1");
@@ -118,6 +219,11 @@ function activeEditor() {
                 ele.setAttribute("shade", e.shade || "500");
 
                 ele.onclick = e.onclick;
+                if (e.back) ele.onclick = function () {
+                    reverseAnimation = true;
+                    e.onclick();
+                    reverseAnimation = false;
+                }
             });
         })
     }
@@ -127,14 +233,17 @@ function activeEditor() {
         hideBorder(content);
         drawMenu([
             { text: "內容", onclick: contentMenu },
-            { text: "物件", onclick: objMenu },
+            { text: "版面", onclick: objMenu },
         ], closeEditor)
     }
 
     function contentMenu() {
         drawMenu([
             { text: "文字", onclick: setText },
-            { text: "顏色",  onclick: function () {
+            { text: "大小", onclick: setSize },
+            { text: "對齊", onclick: setAlign },
+            {
+                text: "顏色", onclick: function () {
                     if (selectedElement)
                         colorPanel(function (r) {
                             if (r == null) selectedElement.setAttribute("color", "none");
@@ -150,7 +259,8 @@ function activeEditor() {
         showBorder(content);
         drawMenu([
             { text: "新增", tcolor: "green", onclick: objCreateMenu },
-            { text: "刪除", tcolor: "red"  , onclick: deleteSelected },
+            { text: "刪除", tcolor: "red", onclick: deleteSelected },
+            { text: "調整", tcolor: "black", onclick: setLayout },
         ], menu)
     }
 
@@ -173,19 +283,18 @@ function activeEditor() {
             if (target != null)
                 if (target.classList.contains("editor")) return;
 
-            var className = "row";
-            if (target.parentNode.classList.contains("row")) className = "line";
-            if (target.parentNode.classList.contains("container")) className = "page";
+            var className = target.className;
             var div = createDom("div", {
                 className: className
             });
             return div;
         }
         function createElement2() {
+            target = selectedElement;
             var className = "row";
             if (target == null) return createDom("div", { className: "page" });
             if (target.classList.contains("row")) className = "line";
-            if (target.classList.contains("container")) className = "page";
+            if (target.classList.contains("container")) className = "row";
             var div = createDom("div", {
                 className: className
             });
@@ -199,7 +308,7 @@ function activeEditor() {
                     if (target == null) return;
                     var element = createElement()
                     target.parentNode.insertBefore(element, target);
-                    setTimeout(function () { hightLight(element) }, 100);
+                    hightLight(element);
                 }
             },
             {
@@ -209,7 +318,7 @@ function activeEditor() {
                     if (target.nextSibling != null)
                         target.parentNode.insertBefore(element, target.nextSibling);
                     else target.parentNode.appendChild(element);
-                    setTimeout(function () { hightLight(element) }, 100);
+                    hightLight(element);
                 }
             },
             {
@@ -217,7 +326,7 @@ function activeEditor() {
                     if (target == null) target = content;
                     var element = createElement2();
                     target.appendChild(element);
-                    setTimeout(function () { hightLight(element) }, 100);
+                    hightLight(element);
                 }
             },
 
@@ -240,7 +349,7 @@ function activeEditor() {
                         if (color == "black" || color == "white") {
                             callback({ color: color, shade: 500 })
                         } else {
-                            ["100", "500", "900"].map(j => {
+                            ["100", "300", "500", "700", "900"].map(j => {
                                 buttons.push({
                                     color: color,
                                     shade: j,
