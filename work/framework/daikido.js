@@ -28,7 +28,7 @@
                 else
                     ele.style.backgroundColor = code;
             }
-            updateCallbacks.filter(c=>c instanceof Function).map(c=>c());
+            updateCallbacks.filter(c => c instanceof Function).map(c => c());
         });
         pages = Array.from(document.querySelectorAll(".page"));
         if (pages.length > 0) document.body.style.overflow = "hidden";
@@ -52,7 +52,7 @@
         guide = guide.map(g => {
             if (g == null) return { type: "ratio", value: 1 };
             else if (g[0] == '*') return { type: "ratio", value: +g.substr(1) };
-            else if (g[0] == '-') return { type: "real", value: max*(+g.substr(1)) };
+            else if (g[0] == '-') return { type: "real", value: max * (+g.substr(1)) };
             else return { type: "real", value: +g };
         });
         var sum = guide.filter(x => x.type == "real").reduce((a, b) => a + b.value, 0);
@@ -65,7 +65,7 @@
             result[result.length - 1] -= sum - max;
             return result;
         }
-        else if(sum<max) return guide.map(g => (g.type == "ratio" ? 0 : g.value));
+        else if (sum < max) return guide.map(g => (g.type == "ratio" ? 0 : g.value));
         return guide.map(g => (g.type == "ratio" ? 0 : g.value * max / sum));
     }
 
@@ -157,7 +157,7 @@
             if (noAnim) scrollToAnimation(element.parentNode, x, y, 0);
             else scrollToAnimation(element.parentNode, x, y, 15);
         }
-        catch(e){}
+        catch (e) { }
     }
 
     function NextPage() {
@@ -193,9 +193,12 @@
             update();
             document.body.style.overflow = "auto";
             update();
-            scrollToPage(pages[currentPage]);
+            setTimeout(function () {
+                scrollToPage(pages[currentPage], true);
+
+            }, 20);
         },
-        onrefresh:function(callback){
+        onrefresh: function (callback) {
             updateCallbacks.push(callback);
         }
     }

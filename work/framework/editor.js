@@ -101,15 +101,15 @@ function activeEditor() {
     });
 
     document.body.appendChild(main);
-    daikido.pageUpdate(0);
 
     closeEditor = function () {
         clearSelection();
         document.body.innerHTML = content.innerHTML;
-        daikido.pageUpdate(0);
+        daikido.pageUpdate();
     }
     content.style.overflow = "hidden";
 
+    daikido.pageUpdate();
 
     // methods
     function notEditor(ele) {
@@ -129,7 +129,7 @@ function activeEditor() {
 
         if (selectedElement.nodeName.toLowerCase() == "div") {
             var result = prompt("請輸入文字", "");
-            if (result != null) createDom("p", { textContent: result }, selectedElement);
+            if (result != null) createDom("p", {className:"wrap normal", textContent: result }, selectedElement);
         } else {
             var result = prompt("請輸入文字", selectedElement.textContent);
             if (result != null) selectedElement.textContent = result;
